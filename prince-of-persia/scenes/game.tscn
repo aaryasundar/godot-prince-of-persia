@@ -2,6 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://c1mxaowimkmvv" path="res://scenes/prince.tscn" id="1_uwrxv"]
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uwrxv"]
+distance = -149.0
+
 [node name="Game" type="Node2D" unique_id=546431153]
 
 [node name="Prince" parent="." unique_id=1259835145 instance=ExtResource("1_uwrxv")]
@@ -9,3 +12,9 @@ position = Vector2(85, 134)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1168062938]
 position = Vector2(97, 137)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=34655765]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1492185887]
+position = Vector2(84, -13)
+shape = SubResource("WorldBoundaryShape2D_uwrxv")

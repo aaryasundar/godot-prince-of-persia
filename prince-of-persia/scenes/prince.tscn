@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://c1mxaowimkmvv"]
 
+[ext_resource type="Script" uid="uid://vdojduj5wwfd" path="res://scripts/prince.gd" id="1_8jjri"]
 [ext_resource type="Texture2D" uid="uid://yfyc1wwft4x7" path="res://assets/sprites/Prince.png" id="1_gqa1u"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gqa1u"]
@@ -57,6 +58,7 @@ radius = 19.0
 height = 50.0
 
 [node name="Prince" type="CharacterBody2D" unique_id=1259835145]
+script = ExtResource("1_8jjri")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1262898620]
 position = Vector2(0, -52)
@@ -64,7 +66,7 @@ sprite_frames = SubResource("SpriteFrames_fgx58")
 animation = &"Idle"
 autoplay = "Idle"
 frame = 5
-frame_progress = 0.23298009
+frame_progress = 0.21303234
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=333781076]
 position = Vector2(0, -58)
