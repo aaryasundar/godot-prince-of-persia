@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://c1mxaowimkmvv"]
+
+[ext_resource type="Texture2D" uid="uid://yfyc1wwft4x7" path="res://assets/sprites/Prince.png" id="1_gqa1u"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqa1u"]
+atlas = ExtResource("1_gqa1u")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8jjri"]
+atlas = ExtResource("1_gqa1u")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k76dv"]
+atlas = ExtResource("1_gqa1u")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e8se7"]
+atlas = ExtResource("1_gqa1u")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0rmg"]
+atlas = ExtResource("1_gqa1u")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8m15v"]
+atlas = ExtResource("1_gqa1u")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fgx58"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gqa1u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8jjri")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k76dv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e8se7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0rmg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8m15v")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1gody"]
+radius = 19.0
+height = 50.0
+
+[node name="Prince" type="CharacterBody2D" unique_id=1259835145]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1262898620]
+position = Vector2(0, -52)
+sprite_frames = SubResource("SpriteFrames_fgx58")
+animation = &"Idle"
+autoplay = "Idle"
+frame = 5
+frame_progress = 0.23298009
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=333781076]
+position = Vector2(0, -58)
+shape = SubResource("CapsuleShape2D_1gody")
