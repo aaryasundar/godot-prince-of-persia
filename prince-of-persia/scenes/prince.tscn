@@ -58,10 +58,11 @@ radius = 19.0
 height = 50.0
 
 [node name="Prince" type="CharacterBody2D" unique_id=1259835145]
+collision_layer = 2
 script = ExtResource("1_8jjri")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1262898620]
-position = Vector2(0, -52)
+position = Vector2(1, -68)
 sprite_frames = SubResource("SpriteFrames_fgx58")
 animation = &"Idle"
 autoplay = "Idle"
@@ -69,5 +70,5 @@ frame = 5
 frame_progress = 0.21303234
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=333781076]
-position = Vector2(0, -58)
+position = Vector2(2, -51)
 shape = SubResource("CapsuleShape2D_1gody")

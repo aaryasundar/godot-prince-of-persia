@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://dmsnc7hrplohw"]
+
+[ext_resource type="Script" uid="uid://bgadnpkwqah3m" path="res://scripts/magic_pot.gd" id="1_f3ngr"]
+[ext_resource type="Texture2D" uid="uid://cugf3lc3eb2ag" path="res://assets/sprites/power-pot.png" id="1_g8nkx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3ngr"]
+atlas = ExtResource("1_g8nkx")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t71bj"]
+atlas = ExtResource("1_g8nkx")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1fl12"]
+atlas = ExtResource("1_g8nkx")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vosxv"]
+atlas = ExtResource("1_g8nkx")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4u0so"]
+atlas = ExtResource("1_g8nkx")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2kvrw"]
+atlas = ExtResource("1_g8nkx")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_clbsh"]
+atlas = ExtResource("1_g8nkx")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uwbem"]
+atlas = ExtResource("1_g8nkx")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_put87"]
+atlas = ExtResource("1_g8nkx")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q1qgi"]
+atlas = ExtResource("1_g8nkx")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nl4oa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f3ngr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t71bj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1fl12")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vosxv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4u0so")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2kvrw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_clbsh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uwbem")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_put87")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q1qgi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_coeb5"]
+radius = 8.0
+
+[node name="Magic_pot" type="Area2D" unique_id=1070646960]
+collision_mask = 2
+script = ExtResource("1_f3ngr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=98611480]
+position = Vector2(0, -1.0000004)
+scale = Vector2(1.21875, 1.15625)
+sprite_frames = SubResource("SpriteFrames_nl4oa")
+autoplay = "default"
+frame_progress = 0.77000266
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=463790736]
+position = Vector2(0, 3)
+shape = SubResource("CircleShape2D_coeb5")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
