@@ -383,6 +383,7 @@ patrol = true
 
 [node name="Enemy2" parent="Enemies" unique_id=1081213518 instance=ExtResource("6_p57ef")]
 position = Vector2(1394, 462)
+face_left = true
 
 [node name="Enemy3" parent="Enemies" unique_id=1253027170 instance=ExtResource("6_p57ef")]
 position = Vector2(811, 462)
@@ -390,3 +391,6 @@ face_left = true
 
 [node name="princess" parent="." unique_id=2142144813 instance=ExtResource("7_u5sy4")]
 position = Vector2(1554, 478)
+
+[node name="AnimatedSprite2D" parent="princess" index="0"]
+flip_h = true
