@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dmsnc7hrplohw" path="res://scenes/magic_pot.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://b8yi2bqdp7bn8" path="res://scenes/killzone.tscn" id="5_iywne"]
 [ext_resource type="PackedScene" uid="uid://d3egpwb1pqlsm" path="res://scenes/enemy.tscn" id="6_p57ef"]
+[ext_resource type="PackedScene" uid="uid://bmygcihyui8x5" path="res://scenes/princess.tscn" id="7_u5sy4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnu2h"]
 texture = ExtResource("3_8jjri")
@@ -378,9 +379,14 @@ position = Vector2(416, 120)
 
 [node name="Enemy" parent="Enemies" unique_id=134091487 instance=ExtResource("6_p57ef")]
 position = Vector2(103, 419)
+patrol = true
 
 [node name="Enemy2" parent="Enemies" unique_id=1081213518 instance=ExtResource("6_p57ef")]
 position = Vector2(1394, 462)
 
 [node name="Enemy3" parent="Enemies" unique_id=1253027170 instance=ExtResource("6_p57ef")]
 position = Vector2(811, 462)
+face_left = true
+
+[node name="princess" parent="." unique_id=2142144813 instance=ExtResource("7_u5sy4")]
+position = Vector2(1554, 478)
