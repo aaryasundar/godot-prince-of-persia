@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://vdojduj5wwfd" path="res://scripts/prince.gd" id="1_8jjri"]
 [ext_resource type="Texture2D" uid="uid://yfyc1wwft4x7" path="res://assets/sprites/Prince.png" id="1_gqa1u"]
+[ext_resource type="AudioStream" uid="uid://bd8p5pxebft24" path="res://assets/sounds/run.wav" id="3_8m15v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gqa1u"]
 atlas = ExtResource("1_gqa1u")
@@ -355,9 +356,16 @@ script = ExtResource("1_8jjri")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1262898620]
 position = Vector2(1, -68)
 sprite_frames = SubResource("SpriteFrames_fgx58")
-animation = &"Idle"
+animation = &"run"
 autoplay = "Idle"
+frame_progress = 0.4430758
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=333781076]
 position = Vector2(2, -51)
 shape = SubResource("CapsuleShape2D_1gody")
+
+[node name="RunSound" type="AudioStreamPlayer2D" parent="." unique_id=1678963718]
+stream = ExtResource("3_8m15v")
+bus = &"SFX"
+volume_db = 6.0
+pitch_scale = 1.25
