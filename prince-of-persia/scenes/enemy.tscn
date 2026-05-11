@@ -161,7 +161,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_j0cyh")
 }],
-"loop": true,
+"loop": false,
 "name": &"dead_e",
 "speed": 10.0
 }, {
@@ -268,6 +268,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w8i8w"]
 size = Vector2(44, 30)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_enhurt"]
+size = Vector2(72, 110)
+
 [node name="Enemy" type="Node2D" unique_id=134091487]
 script = ExtResource("1_4ra3w")
 
@@ -277,6 +280,14 @@ sprite_frames = SubResource("SpriteFrames_8qclf")
 animation = &"run_e"
 autoplay = "idle_e"
 frame_progress = 0.5060294
+
+[node name="Hurtbox" type="StaticBody2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(5, -50)
+shape = SubResource("RectangleShape2D_enhurt")
 
 [node name="Killzone" parent="." unique_id=1519930863 instance=ExtResource("2_4ra3w")]
 remove_collision_on_hit = false

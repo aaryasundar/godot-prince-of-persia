@@ -354,6 +354,9 @@ animations = [{
 radius = 19.0
 height = 50.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_princeswd"]
+size = Vector2(72, 44)
+
 [node name="Prince" type="CharacterBody2D" unique_id=1259835145]
 collision_layer = 2
 script = ExtResource("1_8jjri")
@@ -369,6 +372,15 @@ frame_progress = 0.7196507
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=333781076]
 position = Vector2(2, -51)
 shape = SubResource("CapsuleShape2D_1gody")
+
+[node name="SwordHitbox" type="Area2D" parent="."]
+collision_layer = 1
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwordHitbox"]
+position = Vector2(38, -69)
+shape = SubResource("RectangleShape2D_princeswd")
+disabled = true
 
 [node name="RunSound" type="AudioStreamPlayer2D" parent="." unique_id=1678963718]
 stream = ExtResource("3_8m15v")

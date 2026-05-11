@@ -8,6 +8,7 @@ const DEATH_LAST_FRAMES_START = 3
 const DEATH_FLOOR_OFFSET_Y = 28.0
 const MAX_LIVES = 5
 const HIT_COOLDOWN_MS = 450
+const SWORD_HITBOX_OFFSET := Vector2(38, -69)
 
 # Keep gravity typed and ensure non-zero fallback.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -18,6 +19,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var fight_sound = $FightSound
 @onready var game_over_sound = $GameOverSound
 @onready var hurt_sound = $HurtSound
+@onready var sword_hitbox = $SwordHitbox
+@onready var sword_collision = $SwordHitbox/CollisionShape2D
 
 var is_dead = false
 var lives = MAX_LIVES
@@ -62,6 +65,7 @@ func trigger_death():
 
 func _physics_process(delta):
 	if is_dead:
+		sword_collision.disabled = true
 		if animated_sprite.animation == "death" and animated_sprite.frame >= DEATH_LAST_FRAMES_START:
 			animated_sprite.position = default_sprite_position + Vector2(0, DEATH_FLOOR_OFFSET_Y)
 		else:
@@ -103,11 +107,12 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
-	# Play animations
+	# Play animations (do not call play("fight") every frame — it restarts the clip and sword frames never reach 5–9.)
 	if is_on_floor() and Input.is_action_pressed("slide"):
 		animated_sprite.play("slide")
 	elif Input.is_action_pressed("fight"):
-		animated_sprite.play("fight")
+		if animated_sprite.animation != "fight":
+			animated_sprite.play("fight")
 	elif is_on_floor():
 		if direction == 0:
 			animated_sprite.play("Idle")
@@ -141,3 +146,65 @@ func _physics_process(delta):
 		jump_sound.stop()
 
 	move_and_slide()
+
+	call_deferred("_update_prince_sword_hitbox")
+
+
+func _global_rect_from_rect_collision_shape(cs: CollisionShape2D) -> Rect2:
+	var rs := cs.shape as RectangleShape2D
+	if rs == null:
+		return Rect2()
+	var half := rs.size * 0.5
+	var xf := cs.global_transform
+	var corners: Array[Vector2] = [
+		xf * Vector2(-half.x, -half.y),
+		xf * Vector2(half.x, -half.y),
+		xf * Vector2(half.x, half.y),
+		xf * Vector2(-half.x, half.y),
+	]
+	var mn := corners[0]
+	var mx := corners[0]
+	for i in range(1, 4):
+		mn.x = minf(mn.x, corners[i].x)
+		mn.y = minf(mn.y, corners[i].y)
+		mx.x = maxf(mx.x, corners[i].x)
+		mx.y = maxf(mx.y, corners[i].y)
+	return Rect2(mn, mx - mn)
+
+
+func _update_prince_sword_hitbox() -> void:
+	if is_dead:
+		sword_collision.disabled = true
+		return
+	if animated_sprite.animation != "fight":
+		sword_collision.disabled = true
+		return
+	var frames: SpriteFrames = animated_sprite.sprite_frames
+	if frames == null or not frames.has_animation(&"fight"):
+		sword_collision.disabled = true
+		return
+	var fc: int = frames.get_frame_count(&"fight")
+	if fc < 4:
+		sword_collision.disabled = true
+		return
+	var f: int = animated_sprite.frame
+	var sword_active: bool = f >= 2 and f <= fc - 3
+	sword_collision.disabled = not sword_active
+	if not sword_active:
+		return
+	var facing := -1 if animated_sprite.flip_h else 1
+	sword_collision.position = Vector2(SWORD_HITBOX_OFFSET.x * facing, SWORD_HITBOX_OFFSET.y)
+	var sword_rect := _global_rect_from_rect_collision_shape(sword_collision)
+	if sword_rect.size == Vector2.ZERO:
+		return
+	for enemy in get_tree().get_nodes_in_group("enemy"):
+		if not enemy.has_method("take_prince_hit"):
+			continue
+		var hb_cs := enemy.get_node_or_null("Hurtbox/CollisionShape2D") as CollisionShape2D
+		if hb_cs == null or hb_cs.disabled:
+			continue
+		var hurt_rect := _global_rect_from_rect_collision_shape(hb_cs)
+		if hurt_rect.size == Vector2.ZERO:
+			continue
+		if sword_rect.intersects(hurt_rect):
+			enemy.take_prince_hit()

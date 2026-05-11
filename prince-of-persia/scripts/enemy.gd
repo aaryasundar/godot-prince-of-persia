@@ -3,9 +3,14 @@ extends Node2D
 const SPEED = 60
 const SWORD_ACTIVE_START_FRAME = 5
 const SWORD_ACTIVE_END_FRAME = 9
+const HITS_FROM_PRINCE_TO_DIE = 1
+const PRINCE_HIT_COOLDOWN_MS = 450
 
 var direction = 1
 var prince: Node2D
+var is_dead: bool = false
+var prince_hits_taken: int = 0
+var last_prince_hit_ms: int = -PRINCE_HIT_COOLDOWN_MS
 
 @export var patrol: bool = false
 @export var face_left: bool = false
@@ -19,21 +24,51 @@ var prince: Node2D
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var sword_hitbox = $Killzone
 @onready var sword_collision = $Killzone/CollisionShape2D
+@onready var hurtbox_collision = $Hurtbox/CollisionShape2D
 
 
 func _ready():
+	add_to_group("enemy")
 	var prince_node = get_tree().get_first_node_in_group("prince")
 	if prince_node is Node2D:
 		prince = prince_node
 
 	_set_sword_active(false)
+	animated_sprite.animation_finished.connect(_on_animation_finished)
 
 	if not patrol:
 		_set_facing(-1 if face_left else 1)
 		animated_sprite.play("idle_e")
 
 
+func _on_animation_finished() -> void:
+	if animated_sprite.animation == "dead_e":
+		queue_free()
+
+
+func take_prince_hit() -> void:
+	if is_dead:
+		return
+	var now_ms = Time.get_ticks_msec()
+	if now_ms - last_prince_hit_ms < PRINCE_HIT_COOLDOWN_MS:
+		return
+	last_prince_hit_ms = now_ms
+	prince_hits_taken += 1
+	print("enemy hit")
+	if prince_hits_taken >= HITS_FROM_PRINCE_TO_DIE:
+		_die_from_prince()
+
+
+func _die_from_prince() -> void:
+	is_dead = true
+	_set_sword_active(false)
+	hurtbox_collision.disabled = true
+	animated_sprite.play("dead_e")
+
+
 func _process(delta):
+	if is_dead:
+		return
 	if prince and _can_see_prince():
 		_chase_or_fight(delta)
 		return
@@ -70,7 +105,8 @@ func _chase_or_fight(delta: float) -> void:
 		_set_facing(1)
 
 	if horizontal_distance <= attack_distance:
-		animated_sprite.play("fight_e")
+		if animated_sprite.animation != "fight_e":
+			animated_sprite.play("fight_e")
 		_update_sword_hitbox()
 		return
 
