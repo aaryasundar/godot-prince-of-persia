@@ -4,6 +4,8 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -450.0
 const JUMP_SOUND_DURATION = 1.58
 const SLIDE_SOUND_DURATION = 0.18
+const DEATH_LAST_FRAMES_START = 3
+const DEATH_FLOOR_OFFSET_Y = 28.0
 
 # Keep gravity typed and ensure non-zero fallback.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -11,11 +13,35 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var run_sound = $RunSound
 @onready var jump_sound = $JumpSound
 @onready var slide_sound = $SlideSound
+@onready var game_over_sound = $GameOverSound
 
 var is_dead = false
+var default_sprite_position := Vector2.ZERO
+
+func _ready():
+	default_sprite_position = animated_sprite.position
+
+func trigger_death():
+	if is_dead:
+		return
+	is_dead = true
+	if run_sound.playing:
+		run_sound.stream_paused = false
+		run_sound.stop()
+	if jump_sound.playing:
+		jump_sound.stop()
+	if slide_sound.playing:
+		slide_sound.stop()
+	game_over_sound.play(0.0)
+	animated_sprite.play("death")
+	velocity.x = 0
 
 func _physics_process(delta):
 	if is_dead:
+		if animated_sprite.animation == "death" and animated_sprite.frame >= DEATH_LAST_FRAMES_START:
+			animated_sprite.position = default_sprite_position + Vector2(0, DEATH_FLOOR_OFFSET_Y)
+		else:
+			animated_sprite.position = default_sprite_position
 		if run_sound.playing:
 			run_sound.stream_paused = false
 			run_sound.stop()
@@ -26,20 +52,15 @@ func _physics_process(delta):
 		return
 
 	if Input.is_action_just_pressed("death"):
-		is_dead = true
-		if run_sound.playing:
-			run_sound.stream_paused = false
-			run_sound.stop()
-		if slide_sound.playing:
-			slide_sound.stop()
-		animated_sprite.play("death")
-		velocity.x = 0
+		trigger_death()
 		move_and_slide()
 		return
 
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
+	else:
+		animated_sprite.position = default_sprite_position
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
