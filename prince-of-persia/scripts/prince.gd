@@ -16,6 +16,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var jump_sound = $JumpSound
 @onready var slide_sound = $SlideSound
 @onready var game_over_sound = $GameOverSound
+@onready var hurt_sound = $HurtSound
 
 var is_dead = false
 var lives = MAX_LIVES
@@ -34,6 +35,7 @@ func take_enemy_hit() -> bool:
 		return false
 	last_hit_time_ms = now_ms
 	lives -= 1
+	hurt_sound.play(0.0)
 	print("-1 live")
 	if lives <= 0:
 		trigger_death()
