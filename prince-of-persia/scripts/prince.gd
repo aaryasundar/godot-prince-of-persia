@@ -15,6 +15,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var run_sound = $RunSound
 @onready var jump_sound = $JumpSound
 @onready var slide_sound = $SlideSound
+@onready var fight_sound = $FightSound
 @onready var game_over_sound = $GameOverSound
 @onready var hurt_sound = $HurtSound
 
@@ -53,6 +54,8 @@ func trigger_death():
 		jump_sound.stop()
 	if slide_sound.playing:
 		slide_sound.stop()
+	if fight_sound.playing:
+		fight_sound.stop()
 	game_over_sound.play(0.0)
 	animated_sprite.play("death")
 	velocity.x = 0
@@ -116,6 +119,7 @@ func _physics_process(delta):
 	var has_move_input = Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right")
 	var is_running = is_on_floor() and has_move_input and not Input.is_action_pressed("slide") and not Input.is_action_pressed("fight")
 	var slide_started = Input.is_action_just_pressed("slide") and is_on_floor()
+	var fight_started = Input.is_action_just_pressed("fight")
 	if is_running:
 		if run_sound.playing:
 			run_sound.stream_paused = false
@@ -126,6 +130,9 @@ func _physics_process(delta):
 
 	if slide_started:
 		slide_sound.play(0.0)
+
+	if fight_started:
+		fight_sound.play(0.0)
 
 	if slide_sound.playing and slide_sound.get_playback_position() >= SLIDE_SOUND_DURATION:
 		slide_sound.stop()

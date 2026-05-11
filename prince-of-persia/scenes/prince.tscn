@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://dxbeww615ayo6" path="res://assets/sounds/punch.wav" id="5_slidesnd"]
 [ext_resource type="AudioStream" uid="uid://b1ggi2djpreb8" path="res://assets/sounds/game_over.wav" id="6_gamesnd"]
 [ext_resource type="AudioStream" uid="uid://nnfu2jgq8b0i" path="res://assets/sounds/hurt.wav" id="7_hurtsnd"]
+[ext_resource type="AudioStream" uid="uid://bupk70nbm548x" path="res://assets/sounds/slide.wav" id="8_slidesnd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gqa1u"]
 atlas = ExtResource("1_gqa1u")
@@ -381,6 +382,11 @@ volume_db = 4.0
 bus = &"SFX"
 
 [node name="SlideSound" type="AudioStreamPlayer2D" parent="." unique_id=1244985119]
+stream = ExtResource("8_slidesnd")
+volume_db = 4.0
+bus = &"SFX"
+
+[node name="FightSound" type="AudioStreamPlayer2D" parent="." unique_id=1244985120]
 stream = ExtResource("5_slidesnd")
 volume_db = 4.0
 bus = &"SFX"
