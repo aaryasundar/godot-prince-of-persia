@@ -6,6 +6,8 @@ const JUMP_SOUND_DURATION = 1.58
 const SLIDE_SOUND_DURATION = 0.18
 const DEATH_LAST_FRAMES_START = 3
 const DEATH_FLOOR_OFFSET_Y = 28.0
+const MAX_LIVES = 5
+const HIT_COOLDOWN_MS = 450
 
 # Keep gravity typed and ensure non-zero fallback.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -16,11 +18,27 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var game_over_sound = $GameOverSound
 
 var is_dead = false
+var lives = MAX_LIVES
+var last_hit_time_ms: int = -HIT_COOLDOWN_MS
 var default_sprite_position := Vector2.ZERO
 
 func _ready():
 	default_sprite_position = animated_sprite.position
 	add_to_group("prince")
+
+func take_enemy_hit() -> bool:
+	if is_dead:
+		return false
+	var now_ms = Time.get_ticks_msec()
+	if now_ms - last_hit_time_ms < HIT_COOLDOWN_MS:
+		return false
+	last_hit_time_ms = now_ms
+	lives -= 1
+	print("-1 live")
+	if lives <= 0:
+		trigger_death()
+		return true
+	return false
 
 func trigger_death():
 	if is_dead:

@@ -265,8 +265,8 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w8i8w"]
-height = 46.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w8i8w"]
+size = Vector2(44, 30)
 
 [node name="Enemy" type="Node2D" unique_id=134091487]
 script = ExtResource("1_4ra3w")
@@ -282,8 +282,9 @@ frame_progress = 0.5060294
 remove_collision_on_hit = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone" unique_id=508433749]
-position = Vector2(1, -69)
-shape = SubResource("CapsuleShape2D_w8i8w")
+position = Vector2(38, -69)
+shape = SubResource("RectangleShape2D_w8i8w")
+disabled = true
 
 [node name="RayCast2DRight" type="RayCast2D" parent="." unique_id=897656172]
 position = Vector2(0, -67)
