@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://vdojduj5wwfd" path="res://scripts/prince.gd" id="1_8jjri"]
 [ext_resource type="Texture2D" uid="uid://yfyc1wwft4x7" path="res://assets/sprites/Prince.png" id="1_gqa1u"]
 [ext_resource type="AudioStream" uid="uid://bd8p5pxebft24" path="res://assets/sounds/run.wav" id="3_8m15v"]
+[ext_resource type="AudioStream" path="res://assets/sounds/fast-sword-whoosh.wav" id="4_jumpsnd"]
+[ext_resource type="AudioStream" path="res://assets/sounds/punch.wav" id="5_slidesnd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gqa1u"]
 atlas = ExtResource("1_gqa1u")
@@ -369,3 +371,13 @@ stream = ExtResource("3_8m15v")
 bus = &"SFX"
 volume_db = 6.0
 pitch_scale = 1.25
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="." unique_id=339116204]
+stream = ExtResource("4_jumpsnd")
+bus = &"SFX"
+volume_db = 4.0
+
+[node name="SlideSound" type="AudioStreamPlayer2D" parent="." unique_id=1244985119]
+stream = ExtResource("5_slidesnd")
+bus = &"SFX"
+volume_db = 4.0

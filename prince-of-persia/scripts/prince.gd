@@ -2,11 +2,15 @@ extends CharacterBody2D
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -450.0
+const JUMP_SOUND_DURATION = 1.58
+const SLIDE_SOUND_DURATION = 0.18
 
 # Keep gravity typed and ensure non-zero fallback.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var run_sound = $RunSound
+@onready var jump_sound = $JumpSound
+@onready var slide_sound = $SlideSound
 
 var is_dead = false
 
@@ -26,6 +30,8 @@ func _physics_process(delta):
 		if run_sound.playing:
 			run_sound.stream_paused = false
 			run_sound.stop()
+		if slide_sound.playing:
+			slide_sound.stop()
 		animated_sprite.play("death")
 		velocity.x = 0
 		move_and_slide()
@@ -38,6 +44,7 @@ func _physics_process(delta):
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		jump_sound.play(0.0)
 
 	# Get the input direction and handle the movement/deceleration.
 	var direction = Input.get_axis("move_left", "move_right")
@@ -66,6 +73,7 @@ func _physics_process(delta):
 
 	var has_move_input = Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right")
 	var is_running = is_on_floor() and has_move_input and not Input.is_action_pressed("slide") and not Input.is_action_pressed("fight")
+	var slide_started = Input.is_action_just_pressed("slide") and is_on_floor()
 	if is_running:
 		if run_sound.playing:
 			run_sound.stream_paused = false
@@ -73,5 +81,14 @@ func _physics_process(delta):
 			run_sound.play()
 	elif run_sound.playing:
 		run_sound.stream_paused = true
+
+	if slide_started:
+		slide_sound.play(0.0)
+
+	if slide_sound.playing and slide_sound.get_playback_position() >= SLIDE_SOUND_DURATION:
+		slide_sound.stop()
+
+	if jump_sound.playing and jump_sound.get_playback_position() >= JUMP_SOUND_DURATION:
+		jump_sound.stop()
 
 	move_and_slide()
