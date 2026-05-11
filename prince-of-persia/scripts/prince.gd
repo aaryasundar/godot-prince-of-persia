@@ -20,6 +20,7 @@ var default_sprite_position := Vector2.ZERO
 
 func _ready():
 	default_sprite_position = animated_sprite.position
+	add_to_group("prince")
 
 func trigger_death():
 	if is_dead:

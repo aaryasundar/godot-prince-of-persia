@@ -112,6 +112,10 @@ region = Rect2(640, 0, 128, 128)
 atlas = ExtResource("1_md0e3")
 region = Rect2(0, 128, 128, 128)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_lsnsy"]
+atlas = ExtResource("1_md0e3")
+region = Rect2(128, 256, 128, 128)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_lioqc"]
 atlas = ExtResource("1_md0e3")
 region = Rect2(128, 128, 128, 128)
@@ -120,23 +124,19 @@ region = Rect2(128, 128, 128, 128)
 atlas = ExtResource("1_md0e3")
 region = Rect2(256, 128, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lsnsy"]
-atlas = ExtResource("1_md0e3")
-region = Rect2(384, 128, 128, 128)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_thsr5"]
 atlas = ExtResource("1_md0e3")
-region = Rect2(512, 128, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ekh6n"]
-atlas = ExtResource("1_md0e3")
-region = Rect2(640, 128, 128, 128)
+region = Rect2(0, 128, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2sbpf"]
 atlas = ExtResource("1_md0e3")
 region = Rect2(768, 128, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_78kod"]
+atlas = ExtResource("1_md0e3")
+region = Rect2(896, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ekh6n"]
 atlas = ExtResource("1_md0e3")
 region = Rect2(896, 128, 128, 128)
 
@@ -240,29 +240,29 @@ animations = [{
 "texture": SubResource("AtlasTexture_1f82d")
 }, {
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_lsnsy")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_lioqc")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0lg75")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lsnsy")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_thsr5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ekh6n")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2sbpf")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_78kod")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ekh6n")
 }],
 "loop": true,
-"name": &"walk",
-"speed": 5.0
+"name": &"run_e",
+"speed": 10.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w8i8w"]
@@ -274,9 +274,9 @@ script = ExtResource("1_4ra3w")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1663392669]
 position = Vector2(5, -72)
 sprite_frames = SubResource("SpriteFrames_8qclf")
-animation = &"idle_e"
+animation = &"run_e"
 autoplay = "idle_e"
-frame_progress = 0.98372716
+frame_progress = 0.5060294
 
 [node name="Killzone" parent="." unique_id=1519930863 instance=ExtResource("2_4ra3w")]
 remove_collision_on_hit = false
