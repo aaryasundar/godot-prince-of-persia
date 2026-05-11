@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal lives_changed(current: int)
+
 const SPEED = 300.0
 const JUMP_VELOCITY = -450.0
 const JUMP_SOUND_DURATION = 1.58
@@ -7,6 +9,7 @@ const SLIDE_SOUND_DURATION = 0.18
 const DEATH_LAST_FRAMES_START = 3
 const DEATH_FLOOR_OFFSET_Y = 28.0
 const MAX_LIVES = 5
+const MAX_LIVES_CAP = 10
 const HIT_COOLDOWN_MS = 450
 const SWORD_HITBOX_OFFSET := Vector2(38, -69)
 
@@ -30,6 +33,14 @@ var default_sprite_position := Vector2.ZERO
 func _ready():
 	default_sprite_position = animated_sprite.position
 	add_to_group("prince")
+	lives_changed.emit(lives)
+
+
+func add_life() -> void:
+	if is_dead:
+		return
+	lives = mini(lives + 1, MAX_LIVES_CAP)
+	lives_changed.emit(lives)
 
 func take_enemy_hit() -> bool:
 	if is_dead:
@@ -40,7 +51,7 @@ func take_enemy_hit() -> bool:
 	last_hit_time_ms = now_ms
 	lives -= 1
 	hurt_sound.play(0.0)
-	print("-1 live")
+	lives_changed.emit(lives)
 	if lives <= 0:
 		trigger_death()
 		return true

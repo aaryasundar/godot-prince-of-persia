@@ -13,7 +13,8 @@ func _on_body_entered(body):
 		return
 
 	is_collected = true
-	print("+1 live")
+	if body.is_in_group("prince") and body.has_method("add_life"):
+		body.add_life()
 	sprite.visible = false
 	collision_shape.set_deferred("disabled", true)
 	pickup_sound.play()
