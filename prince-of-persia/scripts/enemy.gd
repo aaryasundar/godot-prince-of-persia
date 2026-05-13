@@ -14,6 +14,8 @@ var last_prince_hit_ms: int = -PRINCE_HIT_COOLDOWN_MS
 
 @export var patrol: bool = false
 @export var face_left: bool = false
+## Until the prince is on the ground and in vision range, face right and idle (ledge guard looking down/right).
+@export var ledge_watch_face_right: bool = false
 @export var vision_distance: float = 260.0
 @export var attack_distance: float = 60.0
 @export var vertical_detection_tolerance: float = 72.0
@@ -26,6 +28,8 @@ var last_prince_hit_ms: int = -PRINCE_HIT_COOLDOWN_MS
 @onready var sword_collision = $Killzone/CollisionShape2D
 @onready var hurtbox_collision = $Hurtbox/CollisionShape2D
 
+var _ledge_watch_active: bool = false
+
 
 func _ready():
 	add_to_group("enemy")
@@ -37,7 +41,11 @@ func _ready():
 	animated_sprite.animation_finished.connect(_on_animation_finished)
 
 	if not patrol:
-		_set_facing(-1 if face_left else 1)
+		if ledge_watch_face_right:
+			_ledge_watch_active = true
+			_set_facing(1)
+		else:
+			_set_facing(-1 if face_left else 1)
 		animated_sprite.play("idle_e")
 
 
@@ -69,13 +77,26 @@ func _die_from_prince() -> void:
 func _process(delta):
 	if is_dead:
 		return
+
+	if ledge_watch_face_right and _ledge_watch_active:
+		var prince_body := prince as CharacterBody2D
+		if prince_body and prince_body.is_on_floor() and _can_see_prince():
+			_ledge_watch_active = false
+		else:
+			_set_sword_active(false)
+			_set_facing(1)
+			if animated_sprite.animation != &"idle_e":
+				animated_sprite.play("idle_e")
+			return
+
 	if prince and _can_see_prince():
 		_chase_or_fight(delta)
 		return
 
 	_set_sword_active(false)
 	if not patrol:
-		animated_sprite.play("idle_e")
+		if animated_sprite.animation != &"idle_e":
+			animated_sprite.play("idle_e")
 		return
 
 	animated_sprite.play("run_e")

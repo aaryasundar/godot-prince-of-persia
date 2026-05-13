@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bmygcihyui8x5"]
 
 [ext_resource type="Texture2D" uid="uid://bnrw4xd6txcm8" path="res://assets/sprites/Princess.png" id="1_o4716"]
+[ext_resource type="Script" uid="uid://c8kprincessvictm" path="res://scripts/princess.gd" id="2_prncs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6t68o"]
 atlas = ExtResource("1_o4716")
@@ -69,7 +70,11 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ows3w"]
 height = 74.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_meet"]
+size = Vector2(96, 128)
+
 [node name="princess" type="CharacterBody2D" unique_id=2142144813]
+script = ExtResource("2_prncs")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1355012051]
 position = Vector2(-1, -70)
@@ -79,6 +84,15 @@ autoplay = "Idle_p"
 flip_h = true
 frame_progress = 0.52206886
 
+[node name="MeetArea" type="Area2D" parent="." unique_id=2142144814]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeetArea" unique_id=2142144815]
+position = Vector2(3, -82)
+shape = SubResource("RectangleShape2D_meet")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=111740255]
 position = Vector2(3, -82)
 shape = SubResource("CapsuleShape2D_ows3w")
+
+[connection signal="body_entered" from="MeetArea" to="." method="_on_meet_area_body_entered"]

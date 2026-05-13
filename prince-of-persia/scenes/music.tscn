@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://clhisgycatool"]
 
-[ext_resource type="AudioStream" uid="uid://jrm4tk72evwg" path="res://assets/music/2-02. The 1st Fight.mp3" id="1_05ggv"]
+[ext_resource type="AudioStream" uid="uid://brkx0lscesw1v" path="res://assets/music/2-01. Intro Music.mp3" id="1_05ggv"]
 
-[node name="Music" type="AudioStreamPlayer2D" unique_id=894691199]
+[node name="Music" type="AudioStreamPlayer" unique_id=894691199]
 stream = ExtResource("1_05ggv")
 autoplay = true
 bus = &"Music"

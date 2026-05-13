@@ -3,11 +3,16 @@ extends CharacterBody2D
 signal lives_changed(current: int)
 
 const SPEED = 300.0
+const SLIDE_SPEED = 320.0
 const JUMP_VELOCITY = -450.0
 const JUMP_SOUND_DURATION = 1.58
 const SLIDE_SOUND_DURATION = 0.18
 const DEATH_LAST_FRAMES_START = 3
 const DEATH_FLOOR_OFFSET_Y = 28.0
+## Slide art for frames 1–2 sits high; nudge sprite down so feet read on the floor (0-based indices).
+const SLIDE_FRAMES_1_2_FLOOR_OFFSET_Y = 22.0
+## Standing capsule is too tall for low tunnels; while sliding, use a short box aligned to the same foot line.
+const SLIDE_HITBOX_SIZE := Vector2(52.0, 22.0)
 const MAX_LIVES = 5
 const MAX_LIVES_CAP = 10
 const HIT_COOLDOWN_MS = 450
@@ -24,6 +29,11 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var hurt_sound = $HurtSound
 @onready var sword_hitbox = $SwordHitbox
 @onready var sword_collision = $SwordHitbox/CollisionShape2D
+@onready var body_collision: CollisionShape2D = $CollisionShape2D
+
+var _standing_capsule: CapsuleShape2D
+var _slide_hitbox: RectangleShape2D
+var _default_body_collision_pos := Vector2.ZERO
 
 var is_dead = false
 var lives = MAX_LIVES
@@ -32,8 +42,27 @@ var default_sprite_position := Vector2.ZERO
 
 func _ready():
 	default_sprite_position = animated_sprite.position
+	_standing_capsule = body_collision.shape as CapsuleShape2D
+	_slide_hitbox = RectangleShape2D.new()
+	_slide_hitbox.size = SLIDE_HITBOX_SIZE
+	_default_body_collision_pos = body_collision.position
 	add_to_group("prince")
 	lives_changed.emit(lives)
+
+
+func _standing_collision_bottom_y() -> float:
+	return _default_body_collision_pos.y + _standing_capsule.height * 0.5 + _standing_capsule.radius
+
+
+func _apply_slide_body_hitbox() -> void:
+	body_collision.shape = _slide_hitbox
+	var half_h: float = _slide_hitbox.size.y * 0.5
+	body_collision.position = Vector2(_default_body_collision_pos.x, _standing_collision_bottom_y() - half_h)
+
+
+func _apply_standing_body_hitbox() -> void:
+	body_collision.shape = _standing_capsule
+	body_collision.position = _default_body_collision_pos
 
 
 func add_life() -> void:
@@ -73,6 +102,7 @@ func trigger_death():
 	game_over_sound.play(0.0)
 	animated_sprite.play("death")
 	velocity.x = 0
+	_apply_standing_body_hitbox()
 
 func _physics_process(delta):
 	if is_dead:
@@ -98,8 +128,6 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
-	else:
-		animated_sprite.position = default_sprite_position
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -113,7 +141,11 @@ func _physics_process(delta):
 	elif direction < 0:
 		animated_sprite.flip_h = true
 
-	if direction:
+	var sliding_on_floor := is_on_floor() and Input.is_action_pressed("slide")
+	if sliding_on_floor:
+		var slide_dir := float(direction) if direction != 0 else (-1.0 if animated_sprite.flip_h else 1.0)
+		velocity.x = slide_dir * SLIDE_SPEED
+	elif direction:
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
@@ -131,6 +163,14 @@ func _physics_process(delta):
 			animated_sprite.play("run")
 	else:
 		animated_sprite.play("jump")
+
+	if is_on_floor():
+		var sprite_pos := default_sprite_position
+		if animated_sprite.animation == "slide":
+			var sf: int = animated_sprite.frame
+			if sf == 1 or sf == 2:
+				sprite_pos.y += SLIDE_FRAMES_1_2_FLOOR_OFFSET_Y
+		animated_sprite.position = sprite_pos
 
 	var has_move_input = Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right")
 	var is_running = is_on_floor() and has_move_input and not Input.is_action_pressed("slide") and not Input.is_action_pressed("fight")
@@ -155,6 +195,11 @@ func _physics_process(delta):
 
 	if jump_sound.playing and jump_sound.get_playback_position() >= JUMP_SOUND_DURATION:
 		jump_sound.stop()
+
+	if sliding_on_floor:
+		_apply_slide_body_hitbox()
+	else:
+		_apply_standing_body_hitbox()
 
 	move_and_slide()
 
