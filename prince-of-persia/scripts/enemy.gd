@@ -1,4 +1,4 @@
-extends Node2D
+extends CharacterBody2D
 
 const SPEED = 60
 const SWORD_ACTIVE_START_FRAME = 5
@@ -7,10 +7,12 @@ const HITS_FROM_PRINCE_TO_DIE = 1
 const PRINCE_HIT_COOLDOWN_MS = 450
 
 var direction = 1
-var prince: Node2D
+var prince: CharacterBody2D
 var is_dead: bool = false
 var prince_hits_taken: int = 0
 var last_prince_hit_ms: int = -PRINCE_HIT_COOLDOWN_MS
+
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @export var patrol: bool = false
 @export var face_left: bool = false
@@ -34,7 +36,7 @@ var _ledge_watch_active: bool = false
 func _ready():
 	add_to_group("enemy")
 	var prince_node = get_tree().get_first_node_in_group("prince")
-	if prince_node is Node2D:
+	if prince_node is CharacterBody2D:
 		prince = prince_node
 
 	_set_sword_active(false)
@@ -47,6 +49,10 @@ func _ready():
 		else:
 			_set_facing(-1 if face_left else 1)
 		animated_sprite.play("idle_e")
+
+	# Drop onto the floor if placed slightly above it in the level.
+	_apply_gravity(1.0 / 60.0)
+	move_and_slide()
 
 
 func _on_animation_finished() -> void:
@@ -74,19 +80,22 @@ func _die_from_prince() -> void:
 	animated_sprite.play("dead_e")
 
 
-func _process(delta):
+func _physics_process(delta):
 	if is_dead:
+		_apply_gravity(delta)
+		velocity.x = move_toward(velocity.x, 0.0, SPEED)
+		move_and_slide()
 		return
 
 	if ledge_watch_face_right and _ledge_watch_active:
-		var prince_body := prince as CharacterBody2D
-		if prince_body and prince_body.is_on_floor() and _can_see_prince():
+		if prince and prince.is_on_floor() and _can_see_prince():
 			_ledge_watch_active = false
 		else:
 			_set_sword_active(false)
 			_set_facing(1)
 			if animated_sprite.animation != &"idle_e":
 				animated_sprite.play("idle_e")
+			_stop_horizontal(delta)
 			return
 
 	if prince and _can_see_prince():
@@ -97,17 +106,21 @@ func _process(delta):
 	if not patrol:
 		if animated_sprite.animation != &"idle_e":
 			animated_sprite.play("idle_e")
+		_stop_horizontal(delta)
 		return
 
 	animated_sprite.play("run_e")
 	if ray_cast_right.is_colliding():
 		direction = -1
 		_set_facing(direction)
-		
+
 	if ray_cast_left.is_colliding():
-		direction =  1
+		direction = 1
 		_set_facing(direction)
-	position.x += direction * SPEED * delta
+
+	_apply_gravity(delta)
+	velocity.x = direction * SPEED
+	move_and_slide()
 
 
 func _can_see_prince() -> bool:
@@ -129,12 +142,28 @@ func _chase_or_fight(delta: float) -> void:
 		if animated_sprite.animation != "fight_e":
 			animated_sprite.play("fight_e")
 		_update_sword_hitbox()
+		_stop_horizontal(delta)
 		return
 
 	_set_sword_active(false)
 	animated_sprite.play("run_e")
 	var move_direction = signf(to_prince.x)
-	position.x += move_direction * SPEED * delta
+	_apply_gravity(delta)
+	velocity.x = move_direction * SPEED
+	move_and_slide()
+
+
+func _stop_horizontal(delta: float) -> void:
+	_apply_gravity(delta)
+	velocity.x = move_toward(velocity.x, 0.0, SPEED)
+	move_and_slide()
+
+
+func _apply_gravity(delta: float) -> void:
+	if not is_on_floor():
+		velocity.y += gravity * delta
+	elif velocity.y > 0.0:
+		velocity.y = 0.0
 
 
 func _set_facing(facing_direction: int) -> void:
