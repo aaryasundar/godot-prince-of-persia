@@ -8,9 +8,9 @@ const JUMP_VELOCITY = -450.0
 const JUMP_SOUND_DURATION = 1.58
 const SLIDE_SOUND_DURATION = 0.18
 const DEATH_LAST_FRAMES_START = 3
-const DEATH_FLOOR_OFFSET_Y = 28.0
+const DEATH_FLOOR_OFFSET_Y = 34.0
 ## Slide art for frames 1–2 sits high; nudge sprite down so feet read on the floor (0-based indices).
-const SLIDE_FRAMES_1_2_FLOOR_OFFSET_Y = 22.0
+const SLIDE_FRAMES_1_2_FLOOR_OFFSET_Y = 26.0
 ## Standing capsule is too tall for low tunnels; while sliding, use a short box aligned to the same foot line.
 const SLIDE_HITBOX_SIZE := Vector2(52.0, 22.0)
 const MAX_LIVES = 5

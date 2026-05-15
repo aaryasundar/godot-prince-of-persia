@@ -362,7 +362,8 @@ collision_layer = 2
 script = ExtResource("1_8jjri")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1262898620]
-position = Vector2(1, -68)
+position = Vector2(1, -81)
+scale = Vector2(1.2, 1.2)
 sprite_frames = SubResource("SpriteFrames_fgx58")
 animation = &"death"
 autoplay = "Idle"
