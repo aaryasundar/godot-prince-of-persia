@@ -333,12 +333,10 @@ size = Vector2(44, 30)
 
 [node name="Enemy" type="CharacterBody2D" unique_id=134091487]
 collision_layer = 4
-collision_mask = 1
-floor_stop_on_slope = true
 script = ExtResource("1_4ra3w")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1663392669]
-position = Vector2(4, -108)
+position = Vector2(11, -98)
 scale = Vector2(1.2, 1.4)
 sprite_frames = SubResource("SpriteFrames_8qclf")
 animation = &"fight_e"
@@ -367,9 +365,7 @@ disabled = true
 [node name="RayCast2DRight" type="RayCast2D" parent="." unique_id=897656172]
 position = Vector2(0, -52)
 target_position = Vector2(30, 0)
-collision_mask = 1
 
 [node name="RayCast2DLeft" type="RayCast2D" parent="." unique_id=989036173]
-position = Vector2(0, -52)
+position = Vector2(1, -53)
 target_position = Vector2(-29, 0)
-collision_mask = 1

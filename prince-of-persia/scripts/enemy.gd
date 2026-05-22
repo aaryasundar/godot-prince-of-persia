@@ -35,9 +35,7 @@ var _ledge_watch_active: bool = false
 
 func _ready():
 	add_to_group("enemy")
-	var prince_node = get_tree().get_first_node_in_group("prince")
-	if prince_node is CharacterBody2D:
-		prince = prince_node
+	call_deferred("_bind_prince")
 
 	_set_sword_active(false)
 	animated_sprite.animation_finished.connect(_on_animation_finished)
@@ -53,6 +51,12 @@ func _ready():
 	# Drop onto the floor if placed slightly above it in the level.
 	_apply_gravity(1.0 / 60.0)
 	move_and_slide()
+
+
+func _bind_prince() -> void:
+	var prince_node := get_tree().get_first_node_in_group("prince")
+	if prince_node is CharacterBody2D:
+		prince = prince_node
 
 
 func _on_animation_finished() -> void:
