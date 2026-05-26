@@ -1,17 +1,16 @@
-[gd_scene format=3 uid="uid://j9clxo0rwt6ke"]
+[gd_scene format=3 uid="uid://cjiurk6asgf1u"]
 
 [ext_resource type="Texture2D" uid="uid://duk8vtefc2ixc" path="res://assets/sprites/themes/world_bg.png" id="2_ahbfi"]
-[ext_resource type="Texture2D" uid="uid://v2n8m8cgq25l" path="res://assets/sprites/tilesets/tileset.png" id="3_8jjri"]
-[ext_resource type="Texture2D" uid="uid://by3iqslqr71ny" path="res://assets/sprites/Background/city_layer_00_clouds.png" id="3_clouds"]
-[ext_resource type="Texture2D" uid="uid://bxu3kit02wf8a" path="res://assets/sprites/Background/city_layer_01_sky.png" id="3_kvpfn"]
-[ext_resource type="Texture2D" uid="uid://ctx1o5dnvfijd" path="res://assets/sprites/Background/city_layer_02_mid_city.png" id="4_dinhu"]
+[ext_resource type="Texture2D" uid="uid://v2n8m8cgq25l" path="res://assets/sprites/tilesets/level1/tileset.png" id="3_8jjri"]
+[ext_resource type="Texture2D" uid="uid://by3iqslqr71ny" path="res://assets/sprites/Background/level1/city_layer_00_clouds.png" id="3_clouds"]
+[ext_resource type="Texture2D" uid="uid://bxu3kit02wf8a" path="res://assets/sprites/Background/level1/city_layer_01_sky.png" id="3_kvpfn"]
+[ext_resource type="Texture2D" uid="uid://ctx1o5dnvfijd" path="res://assets/sprites/Background/level1/city_layer_02_mid_city.png" id="4_dinhu"]
 [ext_resource type="PackedScene" uid="uid://dmsnc7hrplohw" path="res://scenes/magic_pot.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://b8yi2bqdp7bn8" path="res://scenes/killzone.tscn" id="5_iywne"]
-[ext_resource type="Texture2D" uid="uid://d1kmt08vy1r20" path="res://assets/sprites/Background/city_layer_03_foreground_wall.png" id="5_kvuet"]
+[ext_resource type="Texture2D" uid="uid://d1kmt08vy1r20" path="res://assets/sprites/Background/level1/city_layer_03_foreground_wall.png" id="5_kvuet"]
 [ext_resource type="PackedScene" uid="uid://d3egpwb1pqlsm" path="res://scenes/characters/enemy.tscn" id="6_p57ef"]
-[ext_resource type="Texture2D" uid="uid://cbgj4mko8uuf" path="res://assets/sprites/tilesets/tileset_city_theme.png" id="7_dinhu"]
-
-[ext_resource type="PackedScene" uid="uid://cmagicdoorpersia" path="res://scenes/objects/magic_door.tscn" id="8_door"]
+[ext_resource type="Texture2D" uid="uid://cbgj4mko8uuf" path="res://assets/sprites/tilesets/level1/tileset_city_theme.png" id="7_dinhu"]
+[ext_resource type="PackedScene" uid="uid://cdh52yuuy1ggm" path="res://scenes/objects/magic_door.tscn" id="8_door"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnu2h"]
 texture = ExtResource("3_8jjri")
@@ -585,7 +584,6 @@ distance = -7.0
 
 [node name="level01" type="Node2D" unique_id=189175128]
 
-
 [node name="WorldBackground" type="Sprite2D" parent="." unique_id=1991846104]
 z_index = -100
 position = Vector2(4011, 247)
@@ -725,9 +723,9 @@ ledge_watch_face_right = true
 position = Vector2(5633, 908)
 ledge_watch_face_right = true
 
-[node name="Spawn" type="Marker2D" parent="."]
+[node name="Spawn" type="Marker2D" parent="." unique_id=1431268508]
 position = Vector2(85, 134)
 
-[node name="MagicDoor" parent="." instance=ExtResource("8_door")]
-position = Vector2(5480, 1100)
+[node name="MagicDoor" parent="." unique_id=1530371743 instance=ExtResource("8_door")]
+position = Vector2(455, -101)
 goto_level = 2

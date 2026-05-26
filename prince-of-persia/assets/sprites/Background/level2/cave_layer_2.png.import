@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxu3kit02wf8a"
-path="res://.godot/imported/city_layer_01_sky.png-c0dd4dd9e0e654765f05c291de0c890a.ctex"
+uid="uid://bjiuraks51wc3"
+path="res://.godot/imported/cave_layer_2.png-7a263e57078822bc8a8f86529dae74d0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Background/city_layer_01_sky.png"
-dest_files=["res://.godot/imported/city_layer_01_sky.png-c0dd4dd9e0e654765f05c291de0c890a.ctex"]
+source_file="res://assets/sprites/Background/level2/cave_layer_2.png"
+dest_files=["res://.godot/imported/cave_layer_2.png-7a263e57078822bc8a8f86529dae74d0.ctex"]
 
 [params]
 

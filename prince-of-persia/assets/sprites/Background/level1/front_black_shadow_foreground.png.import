@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://by3iqslqr71ny"
-path="res://.godot/imported/city_layer_00_clouds.png-a902bbebf84720c4c04266448eead6f2.ctex"
+uid="uid://b6mydsrbli33s"
+path="res://.godot/imported/front_black_shadow_foreground.png-049505dab7feaee5e7b684c1bf53b273.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Background/city_layer_00_clouds.png"
-dest_files=["res://.godot/imported/city_layer_00_clouds.png-a902bbebf84720c4c04266448eead6f2.ctex"]
+source_file="res://assets/sprites/Background/level1/front_black_shadow_foreground.png"
+dest_files=["res://.godot/imported/front_black_shadow_foreground.png-049505dab7feaee5e7b684c1bf53b273.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6mydsrbli33s"
-path="res://.godot/imported/front_black_shadow_foreground.png-10aba1e1d0277cf9694d59d049332819.ctex"
+uid="uid://brhw7giu8j3v0"
+path="res://.godot/imported/front_bottom_platform.png-b2117c6043f59140e09ff35b396b209f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Background/front_black_shadow_foreground.png"
-dest_files=["res://.godot/imported/front_black_shadow_foreground.png-10aba1e1d0277cf9694d59d049332819.ctex"]
+source_file="res://assets/sprites/Background/level1/front_bottom_platform.png"
+dest_files=["res://.godot/imported/front_bottom_platform.png-b2117c6043f59140e09ff35b396b209f.ctex"]
 
 [params]
 
