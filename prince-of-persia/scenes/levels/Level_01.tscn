@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://d3egpwb1pqlsm" path="res://scenes/characters/enemy.tscn" id="6_p57ef"]
 [ext_resource type="Texture2D" uid="uid://cbgj4mko8uuf" path="res://assets/sprites/tilesets/level1/tileset_city_theme.png" id="7_dinhu"]
 [ext_resource type="PackedScene" uid="uid://cdh52yuuy1ggm" path="res://scenes/objects/magic_door.tscn" id="8_door"]
-[ext_resource type="AudioStream" uid="uid://brkx0lscesw1v" path="res://assets/music/2-01. Intro Music.mp3" id="9_intro_music"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnu2h"]
 texture = ExtResource("3_8jjri")
@@ -730,8 +729,3 @@ position = Vector2(85, 134)
 [node name="MagicDoor" parent="." unique_id=1530371743 instance=ExtResource("8_door")]
 position = Vector2(455, -101)
 goto_level = 2
-
-[node name="IntroMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("9_intro_music")
-autoplay = true
-bus = &"Music"

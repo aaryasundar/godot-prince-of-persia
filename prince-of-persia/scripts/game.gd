@@ -110,6 +110,8 @@ func _hide_restart_fade() -> void:
 func _show_current_level(announce: bool = true) -> void:
 	if _hud.has_method("show_level"):
 		_hud.show_level(_current_level_index + 1, announce)
+	if Music.has_method("update_for_level"):
+		Music.update_for_level(_current_level_index)
 
 
 func _index_for_scene(scene: PackedScene) -> int:
