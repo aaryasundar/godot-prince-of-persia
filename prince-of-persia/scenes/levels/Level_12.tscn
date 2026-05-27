@@ -582,8 +582,7 @@ sources/0 = SubResource("TileSetAtlasSource_8jjri")
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_p57ef"]
 distance = -7.0
 
-[node name="level12" type="Node2D"]
-
+[node name="level12" type="Node2D" unique_id=679997975]
 
 [node name="WorldBackground" type="Sprite2D" parent="." unique_id=1991846104]
 z_index = -100
@@ -689,7 +688,7 @@ position = Vector2(6363, 726)
 [node name="Enemies" type="Node" parent="." unique_id=792679945]
 
 [node name="Enemy" parent="Enemies" unique_id=134091487 instance=ExtResource("6_p57ef")]
-position = Vector2(4165, 1151)
+position = Vector2(4165, 1109)
 patrol = true
 
 [node name="Enemy2" parent="Enemies" unique_id=1081213518 instance=ExtResource("6_p57ef")]
@@ -697,7 +696,7 @@ position = Vector2(5493, 1201)
 face_left = true
 
 [node name="Enemy3" parent="Enemies" unique_id=1253027170 instance=ExtResource("6_p57ef")]
-position = Vector2(4813, 1206)
+position = Vector2(4816, 1160)
 face_left = true
 
 [node name="Enemy4" parent="Enemies" unique_id=1739880733 instance=ExtResource("6_p57ef")]
@@ -721,12 +720,11 @@ position = Vector2(6576, 360)
 ledge_watch_face_right = true
 
 [node name="Enemy9" parent="Enemies" unique_id=279108641 instance=ExtResource("6_p57ef")]
-position = Vector2(5633, 908)
+position = Vector2(5634, 867)
 ledge_watch_face_right = true
 
-[node name="Spawn" type="Marker2D" parent="."]
+[node name="Spawn" type="Marker2D" parent="." unique_id=1215841665]
 position = Vector2(85, 134)
 
-
-[node name="princess" parent="." instance=ExtResource("7_princess")]
+[node name="princess" parent="." unique_id=105288724 instance=ExtResource("7_princess")]
 position = Vector2(5546, 1157)

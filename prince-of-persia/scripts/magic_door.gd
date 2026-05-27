@@ -26,13 +26,13 @@ func _on_body_entered(body: Node2D) -> void:
 
 	if next_level != null:
 		if game.has_method("load_level"):
-			game.load_level(next_level)
+			game.load_level(next_level, true)
 		else:
 			level_change_requested.emit(next_level)
 		return
 
 	if goto_level >= 1 and goto_level <= 12 and game.has_method("load_level_by_index"):
-		game.load_level_by_index(goto_level - 1)
+		game.load_level_by_index(goto_level - 1, true)
 		return
 
 	# Allow retry if nothing was configured.

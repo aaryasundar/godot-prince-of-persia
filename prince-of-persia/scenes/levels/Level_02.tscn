@@ -1,7 +1,14 @@
 [gd_scene format=3 uid="uid://wh18xq5uhxpf"]
 
+[ext_resource type="Texture2D" uid="uid://hotb25a03g0g" path="res://assets/sprites/Background/level2/cave_layer1.png" id="1_d15n0"]
+[ext_resource type="Texture2D" uid="uid://bjiuraks51wc3" path="res://assets/sprites/Background/level2/cave_layer_2.png" id="2_jntcg"]
+[ext_resource type="Texture2D" uid="uid://d02g4seew2aig" path="res://assets/sprites/Background/level2/cave_layer3.png" id="3_3njdy"]
+[ext_resource type="Texture2D" uid="uid://s20ild7gn7bq" path="res://assets/sprites/Background/level2/cave_layer_4.png" id="4_vvr1n"]
+[ext_resource type="Texture2D" uid="uid://creweafhtovoo" path="res://assets/sprites/Background/level2/cave_layer5.png" id="5_ivapw"]
 [ext_resource type="PackedScene" uid="uid://b8yi2bqdp7bn8" path="res://scenes/killzone.tscn" id="5_iywne"]
 [ext_resource type="Texture2D" uid="uid://d3s8uv4jottny" path="res://assets/sprites/tilesets/level2/cave_tiles.png" id="5_ox0pa"]
+[ext_resource type="Texture2D" uid="uid://coqqymk4aco4i" path="res://assets/sprites/Background/level2/cave_layer6.png" id="6_juc02"]
+[ext_resource type="Texture2D" uid="uid://vf1v6g3yrrds" path="res://assets/sprites/Background/level2/cave_layer_5.png" id="7_3njdy"]
 [ext_resource type="PackedScene" uid="uid://cdh52yuuy1ggm" path="res://scenes/objects/magic_door.tscn" id="8_door"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xbyko"]
@@ -194,6 +201,7 @@ texture_region_size = Vector2i(8, 8)
 58:47/0 = 0
 59:47/size_in_atlas = Vector2i(6, 7)
 59:47/0 = 0
+59:47/0/physics_layer_0/polygon_0/points = PackedVector2Array(-34.616364, -36.175186, 35.360306, -38.832527, 36.24608, -19.345352, -33.73059, -17.573792)
 65:47/0 = 0
 73:47/0 = 0
 82:47/0 = 0
@@ -244,7 +252,6 @@ texture_region_size = Vector2i(8, 8)
 0:78/0/physics_layer_0/polygon_0/points = PackedVector2Array(95.632355, 33.576675, -99.77847, 31.027832, -100.62808, -36.941147, 98.18118, -35.24193)
 45:66/size_in_atlas = Vector2i(3, 21)
 45:66/0 = 0
-45:66/0/physics_layer_0/polygon_0/points = PackedVector2Array(14.919189, 80.30534, -13.967636, 82.00458, -13.118011, -15.700836, 10.671127, -80.27137)
 27:77/size_in_atlas = Vector2i(18, 9)
 27:77/0 = 0
 27:77/0/physics_layer_0/polygon_0/points = PackedVector2Array(70.99361, 33.576675, -54.749023, 34.426285, -66.64359, -27.595413, 67.59515, -33.542694)
@@ -270,10 +277,13 @@ texture_region_size = Vector2i(8, 8)
 102:29/0 = 0
 124:0/size_in_atlas = Vector2i(19, 10)
 124:0/0 = 0
+124:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-78.48001, -41.39997, 73.92055, -39.275085, 77.77861, -19.984756, -79.43758, -19.02024)
 143:0/size_in_atlas = Vector2i(12, 13)
 143:0/0 = 0
+143:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-46.131516, -53.890793, 44.21811, -48.57611, 49.53279, -20.231133, -50.560417, -26.431595)
 155:0/size_in_atlas = Vector2i(9, 9)
 155:0/0 = 0
+155:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-34.616364, -36.175186, 35.360306, -38.832527, 36.24608, -19.345352, -33.73059, -17.573792)
 125:19/size_in_atlas = Vector2i(6, 10)
 125:19/0 = 0
 133:17/size_in_atlas = Vector2i(10, 11)
@@ -349,49 +359,62 @@ distance = -7.0
 [node name="CaveParallax" type="Node2D" parent="." unique_id=2001001]
 z_index = -50
 
-[node name="Clouds" type="Parallax2D" parent="CaveParallax" unique_id=2001002]
-scroll_scale = Vector2(0, 1)
-scroll_offset = Vector2(-462, -327)
-repeat_size = Vector2(924, 0)
-autoscroll = Vector2(-15, 0)
-repeat_times = 3
-
-[node name="Sprite2D" type="Sprite2D" parent="CaveParallax/Clouds" unique_id=2001003]
-centered = false
-
-[node name="Sky" type="Parallax2D" parent="CaveParallax" unique_id=2001004]
+[node name="layer1" type="Parallax2D" parent="CaveParallax" unique_id=2001004]
 scroll_scale = Vector2(0.1, 1)
-scroll_offset = Vector2(-462, -327)
-repeat_size = Vector2(924, 0)
-repeat_times = 3
+repeat_size = Vector2(1376, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="CaveParallax/Sky" unique_id=2001005]
-centered = false
+[node name="Sprite2D" type="Sprite2D" parent="CaveParallax/layer1" unique_id=2001005]
+texture = ExtResource("1_d15n0")
 
-[node name="MidCity" type="Parallax2D" parent="CaveParallax" unique_id=2001006]
+[node name="layer2" type="Parallax2D" parent="CaveParallax" unique_id=2001006]
 scroll_scale = Vector2(0.2, 1)
-scroll_offset = Vector2(-462, -327)
-repeat_size = Vector2(924, 0)
-repeat_times = 3
+repeat_size = Vector2(1376, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="CaveParallax/MidCity" unique_id=2001007]
-centered = false
+[node name="Sprite2D" type="Sprite2D" parent="CaveParallax/layer2" unique_id=2001007]
+texture = ExtResource("2_jntcg")
 
-[node name="ForegroundWall" type="Parallax2D" parent="CaveParallax" unique_id=2001008]
-scroll_scale = Vector2(0.3, 1)
-scroll_offset = Vector2(-462, -327)
-repeat_size = Vector2(924, 0)
-repeat_times = 3
+[node name="layer3" type="Parallax2D" parent="CaveParallax" unique_id=2001008]
+scroll_scale = Vector2(0.4, 1)
+repeat_size = Vector2(1376, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="CaveParallax/ForegroundWall" unique_id=2001009]
-centered = false
+[node name="Sprite2D" type="Sprite2D" parent="CaveParallax/layer3" unique_id=2001009]
+texture = ExtResource("3_3njdy")
+
+[node name="layer4" type="Parallax2D" parent="CaveParallax" unique_id=2001002]
+scroll_scale = Vector2(0.5, 1)
+repeat_size = Vector2(1376, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="CaveParallax/layer4" unique_id=2001003]
+texture = ExtResource("4_vvr1n")
+
+[node name="layer5" type="Parallax2D" parent="CaveParallax" unique_id=832937860]
+scroll_scale = Vector2(0.6, 1)
+repeat_size = Vector2(1376, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="CaveParallax/layer5" unique_id=1219569277]
+texture = ExtResource("5_ivapw")
+
+[node name="layer6" type="Parallax2D" parent="CaveParallax" unique_id=1931545829]
+scroll_scale = Vector2(0.8, 1)
+repeat_size = Vector2(1376, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="CaveParallax/layer6" unique_id=1033453103]
+texture = ExtResource("6_juc02")
+
+[node name="layer7" type="Parallax2D" parent="CaveParallax" unique_id=2066938528]
+scroll_scale = Vector2(0.8, 1)
+repeat_size = Vector2(1376, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="CaveParallax/layer7" unique_id=499356117]
+position = Vector2(-42, 771)
+texture = ExtResource("7_3njdy")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=638429564]
 
 [node name="TileMap" type="TileMap" parent="Node2D" unique_id=157413112]
 tile_set = SubResource("TileSet_jntcg")
 format = 2
-layer_0/tile_data = PackedInt32Array(1376273, 0, 0, 2031627, 3342336, 0, 2031661, 3342336, 0, 2031695, 3342336, 0, 1376320, 0, 0, 917538, 4849664, 45, 1114164, 4849664, 45, 1310789, 4849664, 45, 2228278, 4849664, 45, 2162772, 4849664, 45, 1835103, 4849664, 45, 1703935, 4849664, 45)
+layer_0/tile_data = PackedInt32Array(1376273, 0, 0, 2031627, 3342336, 0, 2031661, 3342336, 0, 2031695, 3342336, 0, 1376320, 0, 0, 917538, 4849664, 45, 1114164, 4849664, 45, 1310789, 4849664, 45, 2228278, 4849664, 45, 2162772, 4849664, 45, 1835103, 4849664, 45, 1703935, 4849664, 45, 3276803, 0, 78, 3276976, 0, 78, 3866623, 8126464, 0, 3407893, 8126464, 0, 3801101, 10158080, 0, 3801274, 10158080, 0, 3539137, 9371648, 0, 3801261, 8126464, 0, 2818247, 2949120, 66, 2949136, 2949120, 66, 3211425, 5963776, 18, 3080311, 3342336, 29, 2818182, 6029312, 45, 2883690, 6029312, 45, 3342458, 6029312, 45, 4128918, 0, 78, 4063374, 6750208, 44, 4194461, 3866624, 47, 3276779, 0, 78, 3932135, 3342336, 29, 4587503, 8126464, 0, 4521952, 8126464, 0, 3407832, 8126464, 0, 3473357, 8126464, 0, 3669982, 2949120, 805306434, 5439501, 3342336, 29, 7929910, 3342336, 29, 6029401, 9437184, 55, 4325478, 9437184, 55, 5636180, 6029312, 6, 3932269, 6029312, 6, 3997804, 8192000, 19, 3866732, 8192000, 19, 4128874, 8192000, 19, 5570657, 8192000, 19, 5832787, 8192000, 19, 5767251, 8192000, 19, 5832797, 8192000, 19, 5963860, 8192000, 19, 3997792, 4849664, 45, 7733294, 6750208, 44, 5505045, 6750208, 44, 5308434, 6750208, 44, 4128736, 6750208, 44, 3735519, 6750208, 44, 3407851, 4325376, 46, 3211277, 10092544, 31, 5636111, 10092544, 31, 6160382, 8126464, 0, 5505021, 8126464, 0, 5439523, 8126464, 0, 8060963, 8192000, 19, 7995465, 8716288, 17, 7995428, 9437184, 15, 8585255, 8126464, 0, 8519748, 6750208, 805306412, 6029328, 6750208, 805306412, 6160436, 7667712, 55, 5963826, 8192000, 19)
 
 [node name="Killzone" parent="." unique_id=1519930863 instance=ExtResource("5_iywne")]
 position = Vector2(58, 619)
@@ -408,5 +431,5 @@ shape = SubResource("WorldBoundaryShape2D_p57ef")
 position = Vector2(85, 134)
 
 [node name="MagicDoor" parent="." unique_id=1180710541 instance=ExtResource("8_door")]
-position = Vector2(5839, 588)
+position = Vector2(1486, 328)
 goto_level = 3

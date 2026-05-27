@@ -33,6 +33,7 @@ theme_override_font_sizes/font_size = 28
 text = "♥ 5"
 
 [node name="LevelMargin" type="MarginContainer" parent="LivesHUD" unique_id=555001010]
+anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -235.0
@@ -49,7 +50,18 @@ theme_override_font_sizes/font_size = 28
 text = "Level 1"
 horizontal_alignment = 2
 
+[node name="RestartFade" type="ColorRect" parent="LivesHUD" unique_id=555001014]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
 [node name="LevelBanner" type="Control" parent="LivesHUD" unique_id=555001012]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -57,7 +69,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-visible = false
 
 [node name="LevelNumber" type="Label" parent="LivesHUD/LevelBanner" unique_id=555001013]
 layout_mode = 1

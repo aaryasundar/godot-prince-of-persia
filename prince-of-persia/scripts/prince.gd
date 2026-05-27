@@ -4,7 +4,7 @@ signal lives_changed(current: int)
 
 const SPEED = 300.0
 const SLIDE_SPEED = 320.0
-const JUMP_VELOCITY = -450.0
+const JUMP_VELOCITY = -600.0
 const JUMP_SOUND_DURATION = 1.58
 const SLIDE_SOUND_DURATION = 0.18
 const DEATH_LAST_FRAMES_START = 3
@@ -16,6 +16,7 @@ const SLIDE_HITBOX_SIZE := Vector2(52.0, 22.0)
 const MAX_LIVES = 5
 const MAX_LIVES_CAP = 10
 const HIT_COOLDOWN_MS = 450
+const RESPAWN_INVULNERABLE_MS = 900
 const SWORD_HITBOX_OFFSET := Vector2(38, -69)
 
 # Keep gravity typed and ensure non-zero fallback.
@@ -35,10 +36,12 @@ var _standing_capsule: CapsuleShape2D
 var _slide_hitbox: RectangleShape2D
 var _default_body_collision_pos := Vector2.ZERO
 
-var is_dead = false
-var lives = MAX_LIVES
+var is_dead: bool = false
+var lives: int = MAX_LIVES
 var last_hit_time_ms: int = -HIT_COOLDOWN_MS
+var respawn_invulnerable_until_ms: int = -1
 var default_sprite_position := Vector2.ZERO
+var _level_restart_in_progress: bool = false
 
 func _ready():
 	default_sprite_position = animated_sprite.position
@@ -48,21 +51,90 @@ func _ready():
 	_default_body_collision_pos = body_collision.position
 	add_to_group("prince")
 	lives_changed.emit(lives)
+	if not animated_sprite.animation_finished.is_connected(_on_animated_sprite_animation_finished):
+		animated_sprite.animation_finished.connect(_on_animated_sprite_animation_finished)
+
+
+func is_respawn_invulnerable() -> bool:
+	return Time.get_ticks_msec() < respawn_invulnerable_until_ms
+
+
+func can_be_hurt() -> bool:
+	return not is_dead and not _level_restart_in_progress and not is_respawn_invulnerable()
+
+
+func begin_level_restart() -> void:
+	_level_restart_in_progress = true
+	is_dead = true
+	velocity = Vector2.ZERO
+	if game_over_sound.playing:
+		game_over_sound.stop()
+	get_tree().call_group("hud", "show_restart_fade")
+	_set_idle_sprite_immediate()
+	visible = false
+
+
+func _set_idle_sprite_immediate() -> void:
+	animated_sprite.position = default_sprite_position
+	animated_sprite.play(&"Idle")
+	animated_sprite.frame = 0
+
+
+func _on_animated_sprite_animation_finished() -> void:
+	if not is_dead or _level_restart_in_progress:
+		return
+	if animated_sprite.animation != "death":
+		return
+	begin_level_restart()
+	get_tree().call_group("game", "restart_current_level")
 
 
 func _standing_collision_bottom_y() -> float:
 	return _default_body_collision_pos.y + _standing_capsule.height * 0.5 + _standing_capsule.radius
 
 
+func _ensure_body_collision() -> void:
+	if body_collision != null and is_instance_valid(body_collision):
+		return
+	body_collision = get_node_or_null("CollisionShape2D") as CollisionShape2D
+	if body_collision == null:
+		body_collision = CollisionShape2D.new()
+		body_collision.name = "CollisionShape2D"
+		body_collision.position = _default_body_collision_pos
+		add_child(body_collision)
+	if _standing_capsule == null:
+		_standing_capsule = CapsuleShape2D.new()
+		_standing_capsule.radius = 19.0
+		_standing_capsule.height = 50.0
+
+
 func _apply_slide_body_hitbox() -> void:
+	_ensure_body_collision()
 	body_collision.shape = _slide_hitbox
 	var half_h: float = _slide_hitbox.size.y * 0.5
 	body_collision.position = Vector2(_default_body_collision_pos.x, _standing_collision_bottom_y() - half_h)
 
 
 func _apply_standing_body_hitbox() -> void:
+	_ensure_body_collision()
+	body_collision.disabled = false
 	body_collision.shape = _standing_capsule
 	body_collision.position = _default_body_collision_pos
+
+
+func reset_for_level_restart() -> void:
+	_level_restart_in_progress = false
+	is_dead = false
+	lives = MAX_LIVES
+	lives_changed.emit(lives)
+	last_hit_time_ms = -HIT_COOLDOWN_MS
+	respawn_invulnerable_until_ms = Time.get_ticks_msec() + RESPAWN_INVULNERABLE_MS
+	velocity = Vector2.ZERO
+	if game_over_sound.playing:
+		game_over_sound.stop()
+	_set_idle_sprite_immediate()
+	_apply_standing_body_hitbox()
+	sword_collision.set_deferred("disabled", false)
 
 
 func add_life() -> void:
@@ -72,7 +144,7 @@ func add_life() -> void:
 	lives_changed.emit(lives)
 
 func take_enemy_hit() -> bool:
-	if is_dead:
+	if not can_be_hurt():
 		return false
 	var now_ms = Time.get_ticks_msec()
 	if now_ms - last_hit_time_ms < HIT_COOLDOWN_MS:
@@ -86,8 +158,8 @@ func take_enemy_hit() -> bool:
 		return true
 	return false
 
-func trigger_death():
-	if is_dead:
+func trigger_death() -> void:
+	if not can_be_hurt():
 		return
 	is_dead = true
 	if run_sound.playing:
@@ -102,7 +174,7 @@ func trigger_death():
 	game_over_sound.play(0.0)
 	animated_sprite.play("death")
 	velocity.x = 0
-	_apply_standing_body_hitbox()
+	call_deferred("_apply_standing_body_hitbox")
 
 func _physics_process(delta):
 	if is_dead:
