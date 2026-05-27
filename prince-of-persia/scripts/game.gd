@@ -85,6 +85,10 @@ func restart_current_level() -> void:
 	load_level_by_index(_current_level_index)
 
 
+func get_current_level_number() -> int:
+	return _current_level_index + 1
+
+
 func _place_prince_at_spawn(level: Node) -> void:
 	if level == null:
 		return
