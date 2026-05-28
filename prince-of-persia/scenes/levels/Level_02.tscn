@@ -365,6 +365,7 @@ scroll_scale = Vector2(0.1, 1)
 repeat_size = Vector2(1376, 0)
 
 [node name="FarShadow" type="Sprite2D" parent="CaveParallax/layer1" unique_id=2001005]
+position = Vector2(16, -229)
 texture = ExtResource("1_d15n0")
 
 [node name="layer2" type="Parallax2D" parent="CaveParallax" unique_id=2001006]
@@ -372,6 +373,7 @@ scroll_scale = Vector2(0.2, 1)
 repeat_size = Vector2(1376, 0)
 
 [node name="CaveShadow" type="Sprite2D" parent="CaveParallax/layer2" unique_id=2001007]
+position = Vector2(0, -227)
 texture = ExtResource("2_jntcg")
 
 [node name="layer3" type="Parallax2D" parent="CaveParallax" unique_id=832937860]
@@ -379,12 +381,14 @@ scroll_scale = Vector2(0.3, 1)
 repeat_size = Vector2(1376, 0)
 
 [node name="Gears" type="Sprite2D" parent="CaveParallax/layer3" unique_id=1219569277]
+position = Vector2(4, -229)
 texture = ExtResource("5_ivapw")
 
 [node name="layer4" type="Parallax2D" parent="CaveParallax" unique_id=1087404536]
 repeat_size = Vector2(1376, 0)
 
 [node name="SharpCave" type="Sprite2D" parent="CaveParallax/layer4" unique_id=1872389952]
+position = Vector2(4, -227)
 texture = ExtResource("2_3njdy")
 
 [node name="layer5" type="Parallax2D" parent="CaveParallax" unique_id=2001008]
@@ -392,12 +396,13 @@ scroll_scale = Vector2(0.6, 1)
 repeat_size = Vector2(1376, 0)
 
 [node name="DarkCave" type="Sprite2D" parent="CaveParallax/layer5" unique_id=2001009]
+position = Vector2(-26, -221)
 texture = ExtResource("3_3njdy")
 
 [node name="layer6" type="Parallax2D" parent="CaveParallax" unique_id=2001002]
 scroll_scale = Vector2(0, 1)
 repeat_size = Vector2(1376, 0)
-autoscroll = Vector2(50, 0)
+autoscroll = Vector2(75, 0)
 repeat_times = 3
 
 [node name="CaveFog" type="Sprite2D" parent="CaveParallax/layer6" unique_id=2001003]
@@ -408,7 +413,7 @@ scroll_scale = Vector2(0.1, 1)
 repeat_size = Vector2(1376, 0)
 
 [node name="FullCave" type="Sprite2D" parent="CaveParallax/layer7" unique_id=487472293]
-position = Vector2(-1, 759)
+position = Vector2(1, 540)
 texture = ExtResource("8_vvr1n")
 
 [node name="Node2D" type="Node2D" parent="CaveParallax" unique_id=638429564]
@@ -423,7 +428,7 @@ scroll_scale = Vector2(0.8, 1)
 repeat_size = Vector2(1376, 0)
 
 [node name="ForgroundCave" type="Sprite2D" parent="CaveParallax/layer8" unique_id=1033453103]
-z_index = 800
+position = Vector2(16, -227)
 texture = ExtResource("6_juc02")
 
 [node name="Killzone" parent="." unique_id=1519930863 instance=ExtResource("5_iywne")]
