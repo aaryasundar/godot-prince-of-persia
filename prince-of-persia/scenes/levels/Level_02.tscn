@@ -368,14 +368,14 @@ repeat_size = Vector2(1376, 0)
 texture = ExtResource("1_d15n0")
 
 [node name="layer2" type="Parallax2D" parent="CaveParallax" unique_id=2001006]
-scroll_scale = Vector2(0.2, 1)
+scroll_scale = Vector2(0.3, 1)
 repeat_size = Vector2(1376, 0)
 
 [node name="CaveShadow" type="Sprite2D" parent="CaveParallax/layer2" unique_id=2001007]
 texture = ExtResource("2_jntcg")
 
 [node name="layer3" type="Parallax2D" parent="CaveParallax" unique_id=832937860]
-scroll_scale = Vector2(0.3, 1)
+scroll_scale = Vector2(0.4, 1)
 repeat_size = Vector2(1376, 0)
 
 [node name="Gears" type="Sprite2D" parent="CaveParallax/layer3" unique_id=1219569277]
@@ -395,7 +395,7 @@ repeat_size = Vector2(1376, 0)
 texture = ExtResource("3_3njdy")
 
 [node name="layer6" type="Parallax2D" parent="CaveParallax" unique_id=2001002]
-scroll_scale = Vector2(0, 1)
+scroll_scale = Vector2(0.7, 1)
 repeat_size = Vector2(1376, 0)
 autoscroll = Vector2(75, 0)
 repeat_times = 3
@@ -404,7 +404,7 @@ repeat_times = 3
 texture = ExtResource("4_vvr1n")
 
 [node name="layer7" type="Parallax2D" parent="CaveParallax" unique_id=370555054]
-scroll_scale = Vector2(0.1, 1)
+scroll_scale = Vector2(0.9, 1)
 repeat_size = Vector2(1376, 0)
 
 [node name="FullCave" type="Sprite2D" parent="CaveParallax/layer7" unique_id=487472293]
@@ -420,7 +420,8 @@ format = 2
 layer_0/tile_data = PackedInt32Array(3276976, 0, 78, 3801274, 10158080, 0, 3539137, 9371648, 0, 3801261, 8126464, 0, 2818247, 2949120, 66, 3211425, 5963776, 18, 3080311, 3342336, 29, 2818182, 6029312, 45, 2883690, 6029312, 45, 3342458, 6029312, 45, 4128918, 0, 78, 4063374, 6750208, 44, 4194461, 3866624, 47, 5439501, 3342336, 29, 7929910, 3342336, 29, 6029401, 9437184, 55, 4325478, 9437184, 55, 5636180, 6029312, 6, 3932269, 6029312, 6, 3997804, 8192000, 19, 3866732, 8192000, 19, 4128874, 8192000, 19, 5570657, 8192000, 19, 5832787, 8192000, 19, 5767251, 8192000, 19, 5832797, 8192000, 19, 5963860, 8192000, 19, 3997792, 4849664, 45, 7733294, 6750208, 44, 5505045, 6750208, 44, 5308434, 6750208, 44, 5636111, 10092544, 31, 6160382, 8126464, 0, 5505021, 8126464, 0, 5439523, 8126464, 0, 8060963, 8192000, 19, 7995465, 8716288, 17, 7995428, 9437184, 15, 8585255, 8126464, 0, 8519748, 6750208, 805306412, 6029328, 6750208, 805306412, 6160436, 7667712, 55, 5963826, 8192000, 19, 1703935, 4849664, 45, 2031627, 3342336, 0, 1376273, 0, 0, 917538, 4849664, 45, 2031661, 3342336, 0, 1114164, 4849664, 45, 1376320, 0, 0, 1310789, 4849664, 45, 2097229, 3342336, 0, 3801207, 3342336, 0, 4718737, 8126464, 0, 4718746, 8126464, 0, 3211233, 0, 78, 3801077, 8126464, 0, 3276793, 0, 78, 3145731, 10092544, 31, 3735555, 10158080, 0, 2883590, 2949120, 66, 3342347, 8126464, 0, 4521917, 8126464, 0, 5177294, 8126464, 0, 5111761, 8126464, 0, 4521944, 3342336, 29, 3997660, 4325376, 46, 5177312, 8126464, 0, 3801061, 8126464, 0, 3735514, 10158080, 0, 3801049, 10158080, 0, -1310759, 7667712, 55, -327697, 8257536, 46, -2621433, 6029312, 79, -2818072, 7733248, 48)
 
 [node name="layer8" type="Parallax2D" parent="CaveParallax" unique_id=1931545829]
-scroll_scale = Vector2(0.8, 1)
+z_index = 10
+z_as_relative = false
 repeat_size = Vector2(1376, 0)
 
 [node name="ForgroundCave" type="Sprite2D" parent="CaveParallax/layer8" unique_id=1033453103]
