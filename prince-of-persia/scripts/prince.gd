@@ -4,7 +4,7 @@ signal lives_changed(current: int)
 
 const SPEED = 300.0
 const SLIDE_SPEED = 320.0
-const JUMP_VELOCITY = -600.0
+const JUMP_VELOCITY = -800.0
 const JUMP_SOUND_DURATION = 1.58
 const SLIDE_SOUND_DURATION = 0.18
 const DEATH_LAST_FRAMES_START = 3

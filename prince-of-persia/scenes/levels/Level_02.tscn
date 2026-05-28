@@ -382,7 +382,6 @@ repeat_size = Vector2(1376, 0)
 texture = ExtResource("5_ivapw")
 
 [node name="layer4" type="Parallax2D" parent="CaveParallax" unique_id=1087404536]
-scroll_scale = Vector2(0.5, 1)
 repeat_size = Vector2(1376, 0)
 
 [node name="SharpCave" type="Sprite2D" parent="CaveParallax/layer4" unique_id=1872389952]
@@ -396,33 +395,36 @@ repeat_size = Vector2(1376, 0)
 texture = ExtResource("3_3njdy")
 
 [node name="layer6" type="Parallax2D" parent="CaveParallax" unique_id=2001002]
-scroll_scale = Vector2(0.7, 1)
+scroll_scale = Vector2(0, 1)
 repeat_size = Vector2(1376, 0)
+autoscroll = Vector2(50, 0)
+repeat_times = 3
 
 [node name="CaveFog" type="Sprite2D" parent="CaveParallax/layer6" unique_id=2001003]
 texture = ExtResource("4_vvr1n")
 
-[node name="layer7" type="Parallax2D" parent="CaveParallax" unique_id=1931545829]
-scroll_scale = Vector2(0.8, 1)
-repeat_size = Vector2(1376, 0)
-
-[node name="ForgroundCave" type="Sprite2D" parent="CaveParallax/layer7" unique_id=1033453103]
-texture = ExtResource("6_juc02")
-
-[node name="layer8" type="Parallax2D" parent="CaveParallax" unique_id=370555054]
+[node name="layer7" type="Parallax2D" parent="CaveParallax" unique_id=370555054]
 scroll_scale = Vector2(0.1, 1)
 repeat_size = Vector2(1376, 0)
 
-[node name="ForgroundCave" type="Sprite2D" parent="CaveParallax/layer8" unique_id=487472293]
-position = Vector2(1441, 771)
+[node name="FullCave" type="Sprite2D" parent="CaveParallax/layer7" unique_id=487472293]
+position = Vector2(-1, 759)
 texture = ExtResource("8_vvr1n")
 
-[node name="Node2D" type="Node2D" parent="." unique_id=638429564]
+[node name="Node2D" type="Node2D" parent="CaveParallax" unique_id=638429564]
 
-[node name="TileMap" type="TileMap" parent="Node2D" unique_id=157413112]
+[node name="TileMap" type="TileMap" parent="CaveParallax/Node2D" unique_id=157413112]
 tile_set = SubResource("TileSet_jntcg")
 format = 2
 layer_0/tile_data = PackedInt32Array(1376273, 0, 0, 2031627, 3342336, 0, 2031661, 3342336, 0, 2031695, 3342336, 0, 1376320, 0, 0, 917538, 4849664, 45, 1114164, 4849664, 45, 1310789, 4849664, 45, 2228278, 4849664, 45, 2162772, 4849664, 45, 1835103, 4849664, 45, 1703935, 4849664, 45, 3276803, 0, 78, 3276976, 0, 78, 3866623, 8126464, 0, 3407893, 8126464, 0, 3801101, 10158080, 0, 3801274, 10158080, 0, 3539137, 9371648, 0, 3801261, 8126464, 0, 2818247, 2949120, 66, 2949136, 2949120, 66, 3211425, 5963776, 18, 3080311, 3342336, 29, 2818182, 6029312, 45, 2883690, 6029312, 45, 3342458, 6029312, 45, 4128918, 0, 78, 4063374, 6750208, 44, 4194461, 3866624, 47, 3276779, 0, 78, 3932135, 3342336, 29, 4587503, 8126464, 0, 4521952, 8126464, 0, 3407832, 8126464, 0, 3473357, 8126464, 0, 3669982, 2949120, 805306434, 5439501, 3342336, 29, 7929910, 3342336, 29, 6029401, 9437184, 55, 4325478, 9437184, 55, 5636180, 6029312, 6, 3932269, 6029312, 6, 3997804, 8192000, 19, 3866732, 8192000, 19, 4128874, 8192000, 19, 5570657, 8192000, 19, 5832787, 8192000, 19, 5767251, 8192000, 19, 5832797, 8192000, 19, 5963860, 8192000, 19, 3997792, 4849664, 45, 7733294, 6750208, 44, 5505045, 6750208, 44, 5308434, 6750208, 44, 4128736, 6750208, 44, 3735519, 6750208, 44, 3407851, 4325376, 46, 3211277, 10092544, 31, 5636111, 10092544, 31, 6160382, 8126464, 0, 5505021, 8126464, 0, 5439523, 8126464, 0, 8060963, 8192000, 19, 7995465, 8716288, 17, 7995428, 9437184, 15, 8585255, 8126464, 0, 8519748, 6750208, 805306412, 6029328, 6750208, 805306412, 6160436, 7667712, 55, 5963826, 8192000, 19)
+
+[node name="layer8" type="Parallax2D" parent="CaveParallax" unique_id=1931545829]
+scroll_scale = Vector2(0.8, 1)
+repeat_size = Vector2(1376, 0)
+
+[node name="ForgroundCave" type="Sprite2D" parent="CaveParallax/layer8" unique_id=1033453103]
+z_index = 800
+texture = ExtResource("6_juc02")
 
 [node name="Killzone" parent="." unique_id=1519930863 instance=ExtResource("5_iywne")]
 position = Vector2(58, 619)
