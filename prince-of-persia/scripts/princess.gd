@@ -59,8 +59,20 @@ func _show_victory_label() -> void:
 	play_again.custom_minimum_size = Vector2(220, 64)
 	play_again.add_theme_font_override(&"font", VICTORY_FONT)
 	play_again.add_theme_font_size_override(&"font_size", 30)
+	play_again.shortcut = _make_play_again_shortcut()
 	play_again.pressed.connect(_on_play_again_pressed.bind(layer))
 	content.add_child(play_again)
+	play_again.grab_focus.call_deferred()
+
+
+func _make_play_again_shortcut() -> Shortcut:
+	var shortcut := Shortcut.new()
+	var enter_key := InputEventKey.new()
+	enter_key.physical_keycode = KEY_ENTER
+	var keypad_enter_key := InputEventKey.new()
+	keypad_enter_key.physical_keycode = KEY_KP_ENTER
+	shortcut.events = [enter_key, keypad_enter_key]
+	return shortcut
 
 
 func _on_play_again_pressed(ending_layer: CanvasLayer) -> void:
