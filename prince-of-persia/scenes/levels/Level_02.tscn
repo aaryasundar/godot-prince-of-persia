@@ -1,14 +1,16 @@
 [gd_scene format=3 uid="uid://wh18xq5uhxpf"]
 
-[ext_resource type="Texture2D" uid="uid://hotb25a03g0g" path="res://assets/sprites/Background/level2/cave_layer1.png" id="1_d15n0"]
-[ext_resource type="Texture2D" uid="uid://bjiuraks51wc3" path="res://assets/sprites/Background/level2/cave_layer_2.png" id="2_jntcg"]
-[ext_resource type="Texture2D" uid="uid://d02g4seew2aig" path="res://assets/sprites/Background/level2/cave_layer3.png" id="3_3njdy"]
-[ext_resource type="Texture2D" uid="uid://s20ild7gn7bq" path="res://assets/sprites/Background/level2/cave_layer_4.png" id="4_vvr1n"]
-[ext_resource type="Texture2D" uid="uid://creweafhtovoo" path="res://assets/sprites/Background/level2/cave_layer5.png" id="5_ivapw"]
+[ext_resource type="Texture2D" uid="uid://hotb25a03g0g" path="res://assets/sprites/Background/level2/1_FarShadow.png" id="1_d15n0"]
+[ext_resource type="Texture2D" uid="uid://b3xpmstjxf6pm" path="res://assets/sprites/Background/level2/4_SharpCave.png" id="2_3njdy"]
+[ext_resource type="Texture2D" uid="uid://bjiuraks51wc3" path="res://assets/sprites/Background/level2/2_CaveShadow.png" id="2_jntcg"]
+[ext_resource type="Texture2D" uid="uid://d02g4seew2aig" path="res://assets/sprites/Background/level2/5_DarkCave.png" id="3_3njdy"]
+[ext_resource type="Texture2D" uid="uid://s20ild7gn7bq" path="res://assets/sprites/Background/level2/6_Fog.png" id="4_vvr1n"]
+[ext_resource type="Texture2D" uid="uid://creweafhtovoo" path="res://assets/sprites/Background/level2/3_Gear.png" id="5_ivapw"]
 [ext_resource type="PackedScene" uid="uid://b8yi2bqdp7bn8" path="res://scenes/killzone.tscn" id="5_iywne"]
 [ext_resource type="Texture2D" uid="uid://d3s8uv4jottny" path="res://assets/sprites/tilesets/level2/cave_tiles.png" id="5_ox0pa"]
-[ext_resource type="Texture2D" uid="uid://coqqymk4aco4i" path="res://assets/sprites/Background/level2/cave_layer6.png" id="6_juc02"]
+[ext_resource type="Texture2D" uid="uid://coqqymk4aco4i" path="res://assets/sprites/Background/level2/7_ForGround.png" id="6_juc02"]
 [ext_resource type="PackedScene" uid="uid://cdh52yuuy1ggm" path="res://scenes/objects/magic_door.tscn" id="8_door"]
+[ext_resource type="Texture2D" uid="uid://vf1v6g3yrrds" path="res://assets/sprites/Background/level2/cave_layer.png" id="8_vvr1n"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xbyko"]
 texture = ExtResource("5_ox0pa")
@@ -369,36 +371,51 @@ texture = ExtResource("1_d15n0")
 scroll_scale = Vector2(0.2, 1)
 repeat_size = Vector2(1376, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="CaveParallax/layer2" unique_id=2001007]
+[node name="CaveShadow" type="Sprite2D" parent="CaveParallax/layer2" unique_id=2001007]
 texture = ExtResource("2_jntcg")
 
-[node name="layer3" type="Parallax2D" parent="CaveParallax" unique_id=2001008]
+[node name="layer3" type="Parallax2D" parent="CaveParallax" unique_id=832937860]
 scroll_scale = Vector2(0.4, 1)
 repeat_size = Vector2(1376, 0)
 
-[node name="DarkCave" type="Sprite2D" parent="CaveParallax/layer3" unique_id=2001009]
-texture = ExtResource("3_3njdy")
-
-[node name="layer4" type="Parallax2D" parent="CaveParallax" unique_id=832937860]
-scroll_scale = Vector2(0.6, 1)
-repeat_size = Vector2(1376, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="CaveParallax/layer4" unique_id=1219569277]
+[node name="Gears" type="Sprite2D" parent="CaveParallax/layer3" unique_id=1219569277]
 texture = ExtResource("5_ivapw")
 
-[node name="layer5" type="Parallax2D" parent="CaveParallax" unique_id=2001002]
+[node name="layer4" type="Parallax2D" parent="CaveParallax" unique_id=1087404536]
 scroll_scale = Vector2(0.5, 1)
 repeat_size = Vector2(1376, 0)
 
-[node name="CaveFog" type="Sprite2D" parent="CaveParallax/layer5" unique_id=2001003]
+[node name="SharpCave" type="Sprite2D" parent="CaveParallax/layer4" unique_id=1872389952]
+texture = ExtResource("2_3njdy")
+
+[node name="layer5" type="Parallax2D" parent="CaveParallax" unique_id=2001008]
+scroll_scale = Vector2(0.6, 1)
+repeat_size = Vector2(1376, 0)
+
+[node name="DarkCave" type="Sprite2D" parent="CaveParallax/layer5" unique_id=2001009]
+texture = ExtResource("3_3njdy")
+
+[node name="layer6" type="Parallax2D" parent="CaveParallax" unique_id=2001002]
+scroll_scale = Vector2(0.7, 1)
+repeat_size = Vector2(1376, 0)
+
+[node name="CaveFog" type="Sprite2D" parent="CaveParallax/layer6" unique_id=2001003]
 texture = ExtResource("4_vvr1n")
 
-[node name="layer6" type="Parallax2D" parent="CaveParallax" unique_id=1931545829]
+[node name="layer7" type="Parallax2D" parent="CaveParallax" unique_id=1931545829]
 scroll_scale = Vector2(0.8, 1)
 repeat_size = Vector2(1376, 0)
 
-[node name="ForgroundCave" type="Sprite2D" parent="CaveParallax/layer6" unique_id=1033453103]
+[node name="ForgroundCave" type="Sprite2D" parent="CaveParallax/layer7" unique_id=1033453103]
 texture = ExtResource("6_juc02")
+
+[node name="layer8" type="Parallax2D" parent="CaveParallax" unique_id=370555054]
+scroll_scale = Vector2(0.1, 1)
+repeat_size = Vector2(1376, 0)
+
+[node name="ForgroundCave" type="Sprite2D" parent="CaveParallax/layer8" unique_id=487472293]
+position = Vector2(1441, 771)
+texture = ExtResource("8_vvr1n")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=638429564]
 
