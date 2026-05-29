@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bnrw4xd6txcm8"
-path="res://.godot/imported/Princess.png-fd3e6b53bf3060d0ea8887ec2fd287fa.ctex"
+uid="uid://cugf3lc3eb2ag"
+path="res://.godot/imported/power-pot.png-b531e7e238d42bce475881d1f11185bc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Princess.png"
-dest_files=["res://.godot/imported/Princess.png-fd3e6b53bf3060d0ea8887ec2fd287fa.ctex"]
+source_file="res://assets/sprites/EnergyPot/power-pot.png"
+dest_files=["res://.godot/imported/power-pot.png-b531e7e238d42bce475881d1f11185bc.ctex"]
 
 [params]
 

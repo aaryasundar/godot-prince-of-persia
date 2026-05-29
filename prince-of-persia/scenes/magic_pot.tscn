@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dmsnc7hrplohw"]
 
 [ext_resource type="Script" uid="uid://bgadnpkwqah3m" path="res://scripts/magic_pot.gd" id="1_f3ngr"]
-[ext_resource type="Texture2D" uid="uid://cugf3lc3eb2ag" path="res://assets/sprites/power-pot.png" id="1_g8nkx"]
+[ext_resource type="Texture2D" uid="uid://cugf3lc3eb2ag" path="res://assets/sprites/EnergyPot/power-pot.png" id="1_g8nkx"]
 [ext_resource type="AudioStream" uid="uid://crv44wpbcb7uo" path="res://assets/sounds/power.wav" id="3_t71bj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f3ngr"]

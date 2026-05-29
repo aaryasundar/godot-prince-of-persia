@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bmygcihyui8x5"]
 
-[ext_resource type="Texture2D" uid="uid://bnrw4xd6txcm8" path="res://assets/sprites/Princess.png" id="1_o4716"]
+[ext_resource type="Texture2D" uid="uid://bnrw4xd6txcm8" path="res://assets/sprites/MainCharacters/Princess.png" id="1_o4716"]
 [ext_resource type="Script" uid="uid://bwgldquw6heea" path="res://scripts/princess.gd" id="2_prncs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6t68o"]

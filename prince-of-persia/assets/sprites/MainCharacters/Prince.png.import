@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cugf3lc3eb2ag"
-path="res://.godot/imported/power-pot.png-5e939cb64b8772f9539f925da40d3f8a.ctex"
+uid="uid://cqgc7w81w43y3"
+path="res://.godot/imported/Prince.png-fc9b8b74ab394f4961e2de6df86ef77c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/power-pot.png"
-dest_files=["res://.godot/imported/power-pot.png-5e939cb64b8772f9539f925da40d3f8a.ctex"]
+source_file="res://assets/sprites/MainCharacters/Prince.png"
+dest_files=["res://.godot/imported/Prince.png-fc9b8b74ab394f4961e2de6df86ef77c.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqgc7w81w43y3"
-path="res://.godot/imported/Prince.png-809faaac73ddc2a2870d7226b6d3e934.ctex"
+uid="uid://bnrw4xd6txcm8"
+path="res://.godot/imported/Princess.png-a45389711536ae817e869cd1e5b4b572.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Prince.png"
-dest_files=["res://.godot/imported/Prince.png-809faaac73ddc2a2870d7226b6d3e934.ctex"]
+source_file="res://assets/sprites/MainCharacters/Princess.png"
+dest_files=["res://.godot/imported/Princess.png-a45389711536ae817e869cd1e5b4b572.ctex"]
 
 [params]
 
