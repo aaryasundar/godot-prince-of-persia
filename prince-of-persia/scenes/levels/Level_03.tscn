@@ -447,4 +447,4 @@ position = Vector2(85, 134)
 
 [node name="MagicDoor" parent="." unique_id=1180710541 instance=ExtResource("8_door")]
 position = Vector2(1486, 328)
-goto_level = 3
+goto_level = 4
